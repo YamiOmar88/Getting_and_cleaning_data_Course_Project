@@ -90,5 +90,9 @@ if (!file.exists("UCI HAR Dataset")) {
         # 5. From the data set in step 4, creates a second, independent 
         # tidy data set with the average of each variable for each activity 
         # and each subject
+        
+        grouped_ds <- group_by(extracted_data, activity, subject)
+        new_ds <- grouped_ds %>% summarise_each(funs(mean))
+        write.table(new_ds, file = "solution.txt", row.names = FALSE)
                 
 }
